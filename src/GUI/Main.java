@@ -1,5 +1,6 @@
 package GUI;
 
+import GaussianPrimes.GaussianPrimes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +23,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Main extends Application {
 
