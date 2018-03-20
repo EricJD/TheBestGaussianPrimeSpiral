@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -36,6 +37,7 @@ public class Main extends Application {
     final VBox vb = new VBox();
     final HBox hb = new HBox();
 
+
     final Label fileName = new Label();
     final String [] imageNames = new String [] {"fw1.jpg", "fw2.jpg",
             "fw3.jpg", "fw4.jpg", "fw5.jpg"};
@@ -44,13 +46,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         VBox VB = new VBox();
         HBox HB = new HBox();
+
         Scene scene = new Scene(VB, 500, 500);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("GPS: Primzahlen, Fraktale und Käse");
-        VB.getChildren().addAll(scrollPane, pane);
-        //HB.getChildren().addAll(scrollPane, pane);
-        VBox.setVgrow(scrollPane, Priority.ALWAYS);
+        VB.getChildren().addAll(HB);
+        HB.getChildren().addAll(scrollPane, pane);
+
+        VBox.setVgrow(HB, Priority.ALWAYS);
         HBox.setHgrow(scrollPane, Priority.ALWAYS);
 
 
