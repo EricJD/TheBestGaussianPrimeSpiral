@@ -83,8 +83,8 @@ public class Main extends Application {
                            //        }
 
         scrollPane.setContent(pane);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setPannable(true);
 
         scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
