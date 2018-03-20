@@ -1,6 +1,25 @@
-package GaussianPrimes;
+package GaussianPrimeSpirals;
 
-public class GaussPrimeSieve {
+import java.util.ArrayList;
+import java.util.List;
+
+public class GaussianPrimes {
+
+    public List<int[]> generatePrimes(){
+
+        List<int[]> gaussianPrimes = new ArrayList<>();
+        int[] n;
+
+        for (int real=-120; real<=120; real++){
+            for (int ima=-120;ima<=120;ima++){
+                n = new int[]{real,ima};
+                if (isGaussPrime(n)){
+                    gaussianPrimes.add(n);
+                }
+            }
+        }
+        return gaussianPrimes;
+    }
 
     private boolean isPrime(int n) {
         if(n==2) return true;
@@ -14,7 +33,7 @@ public class GaussPrimeSieve {
         return true;
     }
 
-    public boolean isGaussPrime(int[] n){
+    private boolean isGaussPrime(int[] n){
         if (isPrime((n[0]*n[0])+(n[1]*n[1]))){
             return true;
         }else if (n[0]==0&&isPrime(n[1])&&n[1]%4==3){
