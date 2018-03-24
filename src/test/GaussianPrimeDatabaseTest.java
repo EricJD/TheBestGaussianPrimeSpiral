@@ -13,11 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class GaussianPrimeDatabaseTest {
     GaussianPrimeDatabase database = GaussianPrimeDatabase.getInstance();
 
-    @Before
-    public void init() {
-        database = GaussianPrimeDatabase.getInstance();
-    }
-
     @Test
     public void isConnectionOpen() {
         try {
