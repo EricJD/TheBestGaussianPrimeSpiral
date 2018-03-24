@@ -11,7 +11,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class GaussianPrimeDatabaseTest {
-    GaussianPrimeDatabase database;
+    GaussianPrimeDatabase database = GaussianPrimeDatabase.getInstance();
 
     @Before
     public void init() {
