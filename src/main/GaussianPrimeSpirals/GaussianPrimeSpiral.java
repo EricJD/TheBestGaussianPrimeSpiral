@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class GaussianPrimeSpiral {
 
-    public void primeSpirals() {
+    public List<int[]> primeSpirals() {
 
         GaussianPrimeDatabase gaussianPrimeDatabase = GaussianPrimeDatabase.getInstance();
         ArrayList<String> gaussianPrimesString = gaussianPrimeDatabase.getGaussianPrimes();
@@ -68,5 +68,6 @@ public class GaussianPrimeSpiral {
             pos[1]=pos[1]+y;
         }
         System.out.println("PrimeSpiral found.");
+        return gaussianPrimeSpiral;
     }
 }
