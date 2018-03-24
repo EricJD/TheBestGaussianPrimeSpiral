@@ -1,5 +1,7 @@
 package GaussianPrimeSpirals;
 
+import database.GaussianPrimeDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,8 +11,20 @@ public class GaussianPrimeSpiral {
 
     public void primeSpirals() {
 
-        GaussianPrimes gaussianPrimes = new GaussianPrimes();
-        List<int[]> gaussianPrimeList = gaussianPrimes.generatePrimes();
+        GaussianPrimeDatabase gaussianPrimeDatabase = GaussianPrimeDatabase.getInstance();
+        ArrayList<String> gaussianPrimesString = gaussianPrimeDatabase.getGaussianPrimes();
+
+        ArrayList<int[]> gaussianPrimeList = new ArrayList<>();
+
+        for (int i = 0; i<gaussianPrimesString.size(); i++){
+            String a = gaussianPrimesString.get(i);
+            String[] b = a.split(",");
+            int[] element = new int[b.length];
+            for (int x = 0; x<b.length;x++){
+                element[x] = Integer.valueOf(b[x]);
+            }
+            gaussianPrimeList.add(element);
+        }
 
         List<int[]> gaussianPrimeSpiral = new ArrayList<>();
 
@@ -30,7 +44,7 @@ public class GaussianPrimeSpiral {
         pos[1]=pos[1]+y;
 
         while (!Arrays.equals(pos,start)){
-            if (pos[0]>120||pos[0]<-120||pos[1]>120||pos[1]<-120){
+            if (pos[0]>240||pos[0]<-240||pos[1]>240||pos[1]<-240){
                 System.out.println("Out of bounds.");
                 System.exit(1);
             }
