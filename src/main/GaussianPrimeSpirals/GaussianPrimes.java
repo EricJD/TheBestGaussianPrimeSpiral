@@ -1,6 +1,8 @@
 package GaussianPrimeSpirals;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GaussianPrimes {
@@ -18,6 +20,28 @@ public class GaussianPrimes {
                 }
             }
         }
+        try {
+            Writer writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("data\\gaussian_primes.csv"), "utf-8"));
+
+            for (int i = 0; i<gaussianPrimes.size();i++){
+                writer.write(Integer.toString(gaussianPrimes.get(i)[0]));
+                writer.write(",");
+                writer.write(Integer.toString(gaussianPrimes.get(i)[1]));
+                if (i!=gaussianPrimes.size()-1) {
+                    writer.write(";");
+                }
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         return gaussianPrimes;
     }
 
