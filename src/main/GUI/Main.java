@@ -1,27 +1,18 @@
 package GUI;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -39,13 +30,16 @@ public class Main extends Application {
 
 
     final Label fileName = new Label();
-    final String [] imageNames = new String [] {"fw1.jpg", "fw2.jpg",
-            "fw3.jpg", "fw4.jpg", "fw5.jpg"};
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         VBox VB = new VBox();
         HBox HB = new HBox();
+        yAxis.setLowerBound(-1000);
+        yAxis.setUpperBound(1000);
+        xAxis.setLowerBound(-1000);
+        xAxis.setUpperBound(1000);
+
 
         Scene scene = new Scene(VB, 500, 500);
 
@@ -87,17 +81,11 @@ public class Main extends Application {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setPannable(true);
 
-        scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov,
-                                Number old_val, Number new_val) {
-                fileName.setText(imageNames[(new_val.intValue() - 1)/100]);
-            }
-        });
         primaryStage.show();
     }
 
         /*
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
         primaryStage.setTitle("Gaussian Prime Spiral");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
