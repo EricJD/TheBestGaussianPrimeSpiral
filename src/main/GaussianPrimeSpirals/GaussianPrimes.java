@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GaussianPrimes {
 
-    public void generatePrimes(){
+    public List<int[]> generatePrimes(){
 
         List<int[]> gaussianPrimes = new ArrayList<>();
         int[] n;
@@ -40,6 +40,8 @@ public class GaussianPrimes {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return gaussianPrimes;
     }
 
     private boolean isPrime(int n) {
