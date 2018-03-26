@@ -7,13 +7,13 @@ import java.util.List;
 
 public class GaussianPrimes {
 
-    public List<int[]> generatePrimes(){
+    public void generatePrimes(int max){
 
         List<int[]> gaussianPrimes = new ArrayList<>();
         int[] n;
 
-        for (int real=-240; real<=240; real++){
-            for (int ima=-240;ima<=240;ima++){
+        for (int real=-max; real<=max; real++){
+            for (int ima=-max;ima<=max;ima++){
                 n = new int[]{real,ima};
                 if (isGaussPrime(n)){
                     gaussianPrimes.add(n);
@@ -40,11 +40,9 @@ public class GaussianPrimes {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return gaussianPrimes;
     }
 
-    private boolean isPrime(int n) {
+    public boolean isPrime(int n) {
         if(n==2) return true;
         //check if n is a multiple of 2
         if (n%2==0) return false;
@@ -56,7 +54,7 @@ public class GaussianPrimes {
         return true;
     }
 
-    private boolean isGaussPrime(int[] n){
+    public boolean isGaussPrime(int[] n){
         if (isPrime((n[0]*n[0])+(n[1]*n[1]))){
             return true;
         }else if (n[0]==0&&isPrime(n[1])&&n[1]%4==3){

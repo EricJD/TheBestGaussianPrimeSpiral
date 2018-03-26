@@ -11,7 +11,7 @@ public class Main {
         gaussianPrimeDatabase.createTable();
 
         GaussianPrimes gaussianPrimes = new GaussianPrimes();
-        gaussianPrimes.generatePrimes();
+        gaussianPrimes.generatePrimes(240);
 
         gaussianPrimeDatabase.init();
 
