@@ -5,6 +5,10 @@ import GaussianPrimeSpirals.GaussianPrimeSpiral;
 import GaussianPrimeSpirals.GaussianPrimes;
 import database.GaussianPrimeDatabase;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -12,6 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -25,6 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +94,7 @@ public class Main extends Application {
         gaussianPrimeDatabase.createTable();
 
         GaussianPrimes gaussianPrimes = new GaussianPrimes();
-        gaussianPrimes.generatePrimes(240);
+        gaussianPrimes.generatePrimes(240); //240
 
         gaussianPrimeDatabase.init();
         ArrayList<String> gaussianPrimesString = gaussianPrimeDatabase.getGaussianPrimes();
@@ -105,14 +115,46 @@ public class Main extends Application {
 
         gaussianPrimeDatabase.shutdown();
 
-        XYChart.Series series1 = new XYChart.Series();
-        for (int[] p : primes){
-            if (p[0]<=120&&p[0]>=-120&&p[1]<=120&&p[1]>=-120)
-            series1.getData().add(new XYChart.Data(p[0],p[1]));
-        }
 
-        scatterChart.getData().addAll(series1);
 
+
+
+        EventHandler eventHandler = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (event.getSource() instanceof CheckBox) {
+                    CheckBox chk = (CheckBox) event.getSource();
+                    System.out.println("Action performed on checkbox " + chk.getText());
+
+                    if (checkBox.isSelected()) {
+
+                        XYChart.Series series1 = new XYChart.Series();
+                        for (int[] p : primes) {
+                            if (p[0] <= 120 && p[0] >= -120 && p[1] <= 120 && p[1] >= -120)
+                                series1.getData().add(new XYChart.Data(p[0], p[1]));
+                        }
+                        Rectangle rectangle = new Rectangle();
+                        rectangle.setHeight(2);
+                        rectangle.setWidth(2);
+
+                        series1.setNode(new Circle(2, Color.BLUE));
+
+                        scatterChart.getData().addAll(series1);
+                        series1.getNode().setStyle("-fx-stroke:blue;-fx-stroke-width:1");
+                    }
+                    if(!checkBox.isSelected()){
+
+                        scatterChart.getData().clear();
+                    }
+                }
+
+                }
+
+        };
+
+
+
+        checkBox.setOnAction(eventHandler);
 
         pane.getChildren().addAll(scatterChart);
 
