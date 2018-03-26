@@ -18,6 +18,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -26,13 +27,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -70,7 +67,7 @@ public class Main extends Application {
         xAxis.setUpperBound(1000);
 
 
-        Scene scene = new Scene(VB, 500, 500);
+        Scene scene = new Scene(VB, 525, 440);
         VB.getChildren().addAll(buttonBox, HB);
         HB.getChildren().addAll(scrollPane, pane);
 
@@ -94,7 +91,7 @@ public class Main extends Application {
         gaussianPrimeDatabase.createTable();
 
         GaussianPrimes gaussianPrimes = new GaussianPrimes();
-        gaussianPrimes.generatePrimes(240); //240
+        gaussianPrimes.generatePrimes(240);
 
         gaussianPrimeDatabase.init();
         ArrayList<String> gaussianPrimesString = gaussianPrimeDatabase.getGaussianPrimes();
@@ -118,7 +115,6 @@ public class Main extends Application {
 
 
 
-
         EventHandler eventHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -133,17 +129,11 @@ public class Main extends Application {
                             if (p[0] <= 120 && p[0] >= -120 && p[1] <= 120 && p[1] >= -120)
                                 series1.getData().add(new XYChart.Data(p[0], p[1]));
                         }
-                        Rectangle rectangle = new Rectangle();
-                        rectangle.setHeight(2);
-                        rectangle.setWidth(2);
-
-                        series1.setNode(new Circle(2, Color.BLUE));
 
                         scatterChart.getData().addAll(series1);
-                        series1.getNode().setStyle("-fx-stroke:blue;-fx-stroke-width:1");
+
                     }
                     if(!checkBox.isSelected()){
-
                         scatterChart.getData().clear();
                     }
                 }
@@ -159,6 +149,7 @@ public class Main extends Application {
         pane.getChildren().addAll(scatterChart);
 
 
+        scene.getStylesheets().add("GUI/Chart.css");
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("GPS: Primzahlen, Fraktale und Käse");
