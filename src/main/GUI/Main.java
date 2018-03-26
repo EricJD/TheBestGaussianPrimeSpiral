@@ -121,7 +121,7 @@ public class Main extends Application {
         }
 
         GaussianPrimeSpiral gaussianPrimeSpiral = new GaussianPrimeSpiral();
-        List<int[]> spirals = gaussianPrimeSpiral.primeSpirals();
+        //List<int[]> spirals = gaussianPrimeSpiral.primeSpirals();
 
         gaussianPrimeDatabase.shutdown();
 
