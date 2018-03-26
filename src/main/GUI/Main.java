@@ -5,13 +5,9 @@ import GaussianPrimeSpirals.GaussianPrimeSpiral;
 import GaussianPrimeSpirals.GaussianPrimes;
 import database.GaussianPrimeDatabase;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
@@ -19,22 +15,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.awt.*;
 import java.awt.Label;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Main extends Application {
 
@@ -139,7 +125,7 @@ public class Main extends Application {
 
                         XYChart.Series series1 = new XYChart.Series();
                         for (int[] p : primes) {
-                            if (p[0] <= 120 && p[0] >= -120 && p[1] <= 120 && p[1] >= -120)
+                            if (p[0] <= 120 && p[0] >= -120 && p[1] <= 120 && p[1] >= -120)  //todo: scale Buttons events
                                 series1.getData().add(new XYChart.Data(p[0], p[1]));
                         }
 
