@@ -10,6 +10,8 @@ import java.util.Random;
 public class GaussianPrimeSpiral {
 
     public List<int[]> primeSpirals() {
+        Configuration configuration = Configuration.instance;
+        int max = configuration.max;
 
         GaussianPrimeDatabase gaussianPrimeDatabase = GaussianPrimeDatabase.getInstance();
         ArrayList<String> gaussianPrimesString = gaussianPrimeDatabase.getGaussianPrimes();
@@ -30,7 +32,7 @@ public class GaussianPrimeSpiral {
 
         Random r = new Random();
 
-        int[] start = new int[]{r.nextInt(241)-120,r.nextInt(241)-120};
+        int[] start = new int[]{r.nextInt(2*max)-max,r.nextInt(2*max)-max};
         gaussianPrimeSpiral.add(start);
 
         int x = -1;
@@ -44,7 +46,7 @@ public class GaussianPrimeSpiral {
         pos[1]=pos[1]+y;
 
         while (!Arrays.equals(pos,start)){
-            if (pos[0]>240||pos[0]<-240||pos[1]>240||pos[1]<-240){
+            if (pos[0]>max||pos[0]<-max||pos[1]>max||pos[1]<-max){
                 System.out.println("Out of bounds.");
                 System.exit(1);
             }
