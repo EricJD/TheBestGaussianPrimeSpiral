@@ -32,6 +32,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.awt.*;
+import java.awt.Label;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,22 +43,34 @@ public class Main extends Application {
 
 
         VBox VB = new VBox();
+        VB.setAlignment(Pos.CENTER);
         HBox HB = new HBox();
+        HB.setAlignment(Pos.CENTER);
 
         ScrollPane scrollPane = new ScrollPane();
         Pane pane = new Pane();
 
         HBox buttonBox = new HBox();
         //buttons
-        Button testButton1 = new Button("KÄSE");
-        Button testButton2 = new Button("KÄSE");
-        Button testButton3 = new Button("KÄSE");
+        Label label = new Label("plot range");
+        Button Button10 = new Button("10");
+        Button Button20 = new Button("20");
+        Button Button30 = new Button("30");
+        Button Button40 = new Button("40");
+        Button Button50 = new Button("50");
+        Button Button60 = new Button("60");
+        Button Button70 = new Button("70");
+        Button Button80 = new Button("80");
+        Button Button90 = new Button("90");
+        Button Button100 = new Button("100");
+        Button Button110 = new Button("110");
+        Button Button120 = new Button("120");
         Separator sep1 = new Separator();
-        Button testButton4 = new Button("KÄSE");
+        Button capturePathButton = new Button("capture path");
         Separator sep2 = new Separator();
         CheckBox checkBox = new CheckBox("Show gaussian primes");
         buttonBox.setAlignment((Pos.TOP_CENTER));
-        buttonBox.getChildren().addAll(testButton1,testButton2,testButton3,sep1,testButton4,sep2,checkBox);
+        buttonBox.getChildren().addAll(Button10,Button20,Button30,Button40,Button50,Button60,Button70,Button80,Button90,Button100,Button110,Button120,sep1,capturePathButton,sep2,checkBox);
 
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -67,7 +80,7 @@ public class Main extends Application {
         xAxis.setUpperBound(1000);
 
 
-        Scene scene = new Scene(VB, 525, 440);
+        Scene scene = new Scene(VB, 625, 540);
         VB.getChildren().addAll(buttonBox, HB);
         HB.getChildren().addAll(scrollPane, pane);
 
@@ -82,8 +95,8 @@ public class Main extends Application {
 
 
 
-        final ScatterChart<Number,Number> scatterChart =
-                new ScatterChart<>(xAxis,yAxis);
+        final ScatterChart<Number,Number> scatterChart = new ScatterChart<>(xAxis,yAxis);
+        scatterChart.setLegendVisible(false);
 
         GaussianPrimeDatabase gaussianPrimeDatabase = GaussianPrimeDatabase.getInstance();
         gaussianPrimeDatabase.startup();
