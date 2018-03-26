@@ -1,7 +1,9 @@
 package GUI;
 
 
+import GaussianPrimeSpirals.GaussianPrimeSpiral;
 import GaussianPrimeSpirals.GaussianPrimes;
+import database.GaussianPrimeDatabase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -23,11 +25,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
-
-
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -77,11 +78,36 @@ public class Main extends Application {
         final ScatterChart<Number,Number> scatterChart =
                 new ScatterChart<>(xAxis,yAxis);
 
-        GaussianPrimes primeGen = new GaussianPrimes();
-        List<int[]> primes = primeGen.generatePrimes();
+        GaussianPrimeDatabase gaussianPrimeDatabase = GaussianPrimeDatabase.getInstance();
+        gaussianPrimeDatabase.startup();
+        gaussianPrimeDatabase.dropTable();
+        gaussianPrimeDatabase.createTable();
+
+        GaussianPrimes gaussianPrimes = new GaussianPrimes();
+        gaussianPrimes.generatePrimes(240);
+
+        gaussianPrimeDatabase.init();
+        ArrayList<String> gaussianPrimesString = gaussianPrimeDatabase.getGaussianPrimes();
+        ArrayList<int[]> primes = new ArrayList<>();
+
+        for (int i = 0; i<gaussianPrimesString.size(); i++){
+            String a = gaussianPrimesString.get(i);
+            String[] b = a.split(",");
+            int[] element = new int[b.length];
+            for (int x = 0; x<b.length;x++){
+                element[x] = Integer.valueOf(b[x]);
+            }
+            primes.add(element);
+        }
+
+        GaussianPrimeSpiral gaussianPrimeSpiral = new GaussianPrimeSpiral();
+        List<int[]> spirals = gaussianPrimeSpiral.primeSpirals();
+
+        gaussianPrimeDatabase.shutdown();
 
         XYChart.Series series1 = new XYChart.Series();
         for (int[] p : primes){
+            if (p[0]<=120&&p[0]>=-120&&p[1]<=120&&p[1]>=-120)
             series1.getData().add(new XYChart.Data(p[0],p[1]));
         }
 
