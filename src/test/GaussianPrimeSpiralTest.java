@@ -15,7 +15,7 @@ public class GaussianPrimeSpiralTest {
         gaussianPrimeDatabase.createTable();
         gaussianPrimeDatabase.init();
         GaussianPrimeSpiral gaussianPrimeSpiral = new GaussianPrimeSpiral();
-        List<int[]> spiral= gaussianPrimeSpiral.primeSpirals();
+        List<int[]> spiral= gaussianPrimeSpiral.getPrimes();
         Assertions.assertNotNull(spiral);
         gaussianPrimeDatabase.shutdown();
     }
