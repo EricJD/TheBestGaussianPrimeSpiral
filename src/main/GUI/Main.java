@@ -117,7 +117,15 @@ public class Main extends Application {
         gaussianPrimeDatabase.shutdown();
 
         Label textLabel = new Label();
-        textLabel.setText("initial point is "+spiral.get(0)[0]+" "+spiral.get(0)[1]+"i; cycle length is "+spiral.size());
+        String start1;
+        String start2;
+        if (spiral.get(0)[0]<0) {
+            start1 = String.valueOf(spiral.get(0)[0]);
+        }else start1 = "+"+String.valueOf(spiral.get(0)[0]);
+        if (spiral.get(0)[1]<0) {
+            start2 = String.valueOf(spiral.get(0)[1]);
+        }else start2 = "+"+String.valueOf(spiral.get(0)[1]);
+        textLabel.setText("initial point is "+start1+" "+start2+"i; cycle length is "+spiral.size());
         VB.getChildren().add(textLabel);
 
 
