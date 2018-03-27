@@ -110,12 +110,12 @@ public class Main extends Application {
         }
 
         GaussianPrimeSpiral gaussianPrimeSpiral = new GaussianPrimeSpiral();
-        List<int[]> spirals = gaussianPrimeSpiral.primeSpirals();
+        List<int[]> spiral = gaussianPrimeSpiral.primeSpirals();
 
         gaussianPrimeDatabase.shutdown();
 
         Label textLabel = new Label();
-        textLabel.setText("initial point is "+spirals.get(0)[0]+" "+spirals.get(0)[1]+"i; cycle length is "+spirals.size());
+        textLabel.setText("initial point is "+spiral.get(0)[0]+" "+spiral.get(0)[1]+"i; cycle length is "+spiral.size());
         VB.getChildren().add(textLabel);
 
 
