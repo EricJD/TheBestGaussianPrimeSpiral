@@ -235,10 +235,8 @@ public class Main extends Application {
         });
 
 
-
-
+        scatterChart.setPrefSize(675,675);
         pane.getChildren().addAll(scatterChart);
-
         scene.getStylesheets().add("GUI/Chart.css");
 
         primaryStage.setScene(scene);
