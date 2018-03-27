@@ -90,7 +90,7 @@ public class Main extends Application {
         gaussianPrimeDatabase.createTable();
 
         GaussianPrimes gaussianPrimes = new GaussianPrimes();
-        gaussianPrimes.generatePrimes(240);
+        gaussianPrimes.generatePrimes();
 
         gaussianPrimeDatabase.init();
         ArrayList<String> gaussianPrimesString = gaussianPrimeDatabase.getGaussianPrimes();
