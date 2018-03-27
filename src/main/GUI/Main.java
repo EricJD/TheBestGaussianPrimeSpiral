@@ -17,9 +17,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.chart.NumberAxis;
-
-import java.awt.Label;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main extends Application {
@@ -62,16 +61,12 @@ public class Main extends Application {
         buttonBox.setAlignment((Pos.TOP_CENTER));
         buttonBox.getChildren().addAll(Button10,Button20,Button30,Button40,Button50,Button60,Button70,Button80,Button90,Button100,Button110,Button120,sep1,capturePathButton,sep2,checkBox);
 
-
-
-
-
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLowerBound(-1000);
-        yAxis.setUpperBound(1000);
-        xAxis.setLowerBound(-1000);
-        xAxis.setUpperBound(1000);
+        yAxis.setLowerBound(-100);
+        yAxis.setUpperBound(100);
+        xAxis.setLowerBound(-100);
+        xAxis.setUpperBound(100);
 
 
         Scene scene = new Scene(VB, 625, 540);
@@ -117,10 +112,13 @@ public class Main extends Application {
         }
 
         GaussianPrimeSpiral gaussianPrimeSpiral = new GaussianPrimeSpiral();
-        //List<int[]> spirals = gaussianPrimeSpiral.primeSpirals();
+        List<int[]> spirals = gaussianPrimeSpiral.primeSpirals();
 
         gaussianPrimeDatabase.shutdown();
 
+        Label textLabel = new Label();
+        textLabel.setText("initial point is "+spirals.get(0)[0]+" "+spirals.get(0)[1]+"i; cycle length is "+spirals.size());
+        VB.getChildren().add(textLabel);
 
 
 
@@ -132,6 +130,10 @@ public class Main extends Application {
                     System.out.println("Action performed on checkbox " + chk.getText());
 
                     showPrimes(checkBox, primes, scatterChart);
+
+                    if(!checkBox.isSelected()){
+                        scatterChart.getData().clear();
+                    }
                 }
                 }
         });
@@ -233,11 +235,9 @@ public class Main extends Application {
         });
 
 
-//scatterChart.getData().
 
-        scatterChart.setPrefSize(700,700);
+
         pane.getChildren().addAll(scatterChart);
-        pane.setAlignment(scatterChart, Pos.CENTER);
 
         scene.getStylesheets().add("GUI/Chart.css");
 
