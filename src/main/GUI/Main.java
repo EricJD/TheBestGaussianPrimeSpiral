@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
+    public static int scale = 120;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -57,6 +59,10 @@ public class Main extends Application {
         CheckBox checkBox = new CheckBox("Show gaussian primes");
         buttonBox.setAlignment((Pos.TOP_CENTER));
         buttonBox.getChildren().addAll(Button10,Button20,Button30,Button40,Button50,Button60,Button70,Button80,Button90,Button100,Button110,Button120,sep1,capturePathButton,sep2,checkBox);
+
+
+
+
 
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -114,39 +120,122 @@ public class Main extends Application {
 
 
 
-        EventHandler eventHandler = new EventHandler<ActionEvent>() {
+            checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (event.getSource() instanceof CheckBox) {
                     CheckBox chk = (CheckBox) event.getSource();
                     System.out.println("Action performed on checkbox " + chk.getText());
 
-                    if (checkBox.isSelected()) {
+                    showPrimes(checkBox, primes, scatterChart);
 
-                        XYChart.Series series1 = new XYChart.Series();
-                        for (int[] p : primes) {
-                            if (p[0] <= 120 && p[0] >= -120 && p[1] <= 120 && p[1] >= -120)  //todo: scale Buttons events
-                                series1.getData().add(new XYChart.Data(p[0], p[1]));
-                        }
-
-                        scatterChart.getData().addAll(series1);
-
-                    }
                     if(!checkBox.isSelected()){
                         scatterChart.getData().clear();
                     }
                 }
-
                 }
+        });
 
-        };
+        Button10.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 10;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button20.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 20;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button30.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 30;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button40.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 40;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button50.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 50;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button60.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 60;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button70.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 70;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button80.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 80;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button90.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 90;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button100.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 100;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button110.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 110;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
+
+        Button120.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scale = 120;
+                showPrimes(checkBox, primes, scatterChart);
+            }
+        });
 
 
 
-        checkBox.setOnAction(eventHandler);
 
         pane.getChildren().addAll(scatterChart);
-
 
         scene.getStylesheets().add("GUI/Chart.css");
 
@@ -155,7 +244,8 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-/*
+
+    /*
         Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
         primaryStage.setTitle("Gaussian Prime Spiral");
         primaryStage.setScene(new Scene(root, 600, 650));
@@ -165,6 +255,24 @@ public class Main extends Application {
 
     }*/
 
+
+    private void showPrimes(CheckBox checkBox, ArrayList<int[]> primes, ScatterChart<Number, Number> scatterChart) {
+        if(!checkBox.isSelected()){
+            scatterChart.getData().clear();
+        }
+
+        else if (checkBox.isSelected()) {
+            scatterChart.getData().clear();
+
+            XYChart.Series series1 = new XYChart.Series();
+            for (int[] p : primes) {
+                if (p[0] <= scale && p[0] >= -scale && p[1] <= scale && p[1] >= -scale)  //todo: scale Buttons events
+                    series1.getData().add(new XYChart.Data(p[0], p[1]));
+            }
+            scatterChart.getData().addAll(series1);
+        }
+
+    }
 
     public static void main(String[] args) {
         launch(args);
