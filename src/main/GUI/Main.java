@@ -32,11 +32,13 @@ public class Main extends Application {
 
         VBox VB = new VBox();
         VB.setAlignment(Pos.CENTER);
+        VBox VB2 = new VBox();
+        VB2.setAlignment(Pos.CENTER);
         HBox HB = new HBox();
         HB.setAlignment(Pos.CENTER);
 
-        ScrollPane scrollPane = new ScrollPane();
-        Pane pane = new Pane();
+        //ScrollPane scrollPane = new ScrollPane();
+        StackPane pane = new StackPane();
 
         HBox buttonBox = new HBox();
         //buttons
@@ -74,16 +76,18 @@ public class Main extends Application {
 
         Scene scene = new Scene(VB, 625, 540);
         VB.getChildren().addAll(buttonBox, HB);
-        HB.getChildren().addAll(scrollPane, pane);
+        HB.getChildren().addAll(VB2);
+        VB2.getChildren().addAll(pane);
 
-        scrollPane.setContent(pane);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setPannable(true);
+
+        //scrollPane.setContent(pane);
+        //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        //scrollPane.setPannable(true);
 
 
         VBox.setVgrow(HB, Priority.ALWAYS);
-        HBox.setHgrow(scrollPane, Priority.ALWAYS);
+        //HBox.setHgrow(scrollPane, Priority.ALWAYS);
 
 
 
@@ -128,10 +132,6 @@ public class Main extends Application {
                     System.out.println("Action performed on checkbox " + chk.getText());
 
                     showPrimes(checkBox, primes, scatterChart);
-
-                    if(!checkBox.isSelected()){
-                        scatterChart.getData().clear();
-                    }
                 }
                 }
         });
@@ -233,9 +233,11 @@ public class Main extends Application {
         });
 
 
+//scatterChart.getData().
 
-
+        scatterChart.setPrefSize(700,700);
         pane.getChildren().addAll(scatterChart);
+        pane.setAlignment(scatterChart, Pos.CENTER);
 
         scene.getStylesheets().add("GUI/Chart.css");
 
@@ -266,7 +268,7 @@ public class Main extends Application {
 
             XYChart.Series series1 = new XYChart.Series();
             for (int[] p : primes) {
-                if (p[0] <= scale && p[0] >= -scale && p[1] <= scale && p[1] >= -scale)  //todo: scale Buttons events
+                if (p[0] <= scale && p[0] >= -scale && p[1] <= scale && p[1] >= -scale)
                     series1.getData().add(new XYChart.Data(p[0], p[1]));
             }
             scatterChart.getData().addAll(series1);
