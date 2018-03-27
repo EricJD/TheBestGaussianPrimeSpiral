@@ -7,7 +7,9 @@ import java.util.List;
 
 public class GaussianPrimes {
 
-    public void generatePrimes(int max){
+    public void generatePrimes(){
+        Configuration configuration = Configuration.instance;
+        int max = configuration.max;
 
         List<int[]> gaussianPrimes = new ArrayList<>();
         int[] n;
