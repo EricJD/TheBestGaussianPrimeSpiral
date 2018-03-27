@@ -9,7 +9,7 @@ public class GaussianPrimes {
 
     public void generatePrimes(){
         Configuration configuration = Configuration.instance;
-        int max = configuration.max;
+        int max = 2*configuration.max;
 
         List<int[]> gaussianPrimes = new ArrayList<>();
         int[] n;

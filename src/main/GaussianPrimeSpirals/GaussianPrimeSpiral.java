@@ -46,7 +46,7 @@ public class GaussianPrimeSpiral {
         pos[1]=pos[1]+y;
 
         while (!Arrays.equals(pos,start)){
-            if (pos[0]>max||pos[0]<-max||pos[1]>max||pos[1]<-max){
+            if (pos[0]>2*max||pos[0]<-2*max||pos[1]>2*max||pos[1]<-2*max){
                 System.out.println("Out of bounds.");
                 System.exit(1);
             }
