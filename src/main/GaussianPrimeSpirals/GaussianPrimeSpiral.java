@@ -71,7 +71,6 @@ public class GaussianPrimeSpiral {
             pos[0] = pos[0] + x;
             pos[1] = pos[1] + y;
         }
-        System.out.println("PrimeSpiral found.");
         return gaussianPrimeSpiral;
     }
 }
