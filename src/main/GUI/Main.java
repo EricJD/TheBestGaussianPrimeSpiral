@@ -13,7 +13,6 @@ import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.chart.NumberAxis;
@@ -36,7 +35,6 @@ public class Main extends Application {
         HBox HB = new HBox();
         HB.setAlignment(Pos.CENTER);
 
-        //ScrollPane scrollPane = new ScrollPane();
         StackPane pane = new StackPane();
 
         HBox buttonBox = new HBox();
@@ -59,7 +57,7 @@ public class Main extends Application {
         Separator sep2 = new Separator();
         CheckBox checkBox = new CheckBox("Show gaussian primes");
         buttonBox.setAlignment((Pos.TOP_CENTER));
-        buttonBox.getChildren().addAll(Button10,Button20,Button30,Button40,Button50,Button60,Button70,Button80,Button90,Button100,Button110,Button120,sep1,capturePathButton,sep2,checkBox);
+        buttonBox.getChildren().addAll(label,Button10,Button20,Button30,Button40,Button50,Button60,Button70,Button80,Button90,Button100,Button110,Button120,sep1,capturePathButton,sep2,checkBox);
 
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -69,22 +67,12 @@ public class Main extends Application {
         xAxis.setUpperBound(100);
 
 
-        Scene scene = new Scene(VB, 625, 540);
+        Scene scene = new Scene(VB, 700, 700);
         VB.getChildren().addAll(buttonBox, HB);
         HB.getChildren().addAll(VB2);
         VB2.getChildren().addAll(pane);
 
-
-        //scrollPane.setContent(pane);
-        //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        //scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        //scrollPane.setPannable(true);
-
-
         VBox.setVgrow(HB, Priority.ALWAYS);
-        //HBox.setHgrow(scrollPane, Priority.ALWAYS);
-
-
 
         final ScatterChart<Number,Number> scatterChart = new ScatterChart<>(xAxis,yAxis);
         scatterChart.setLegendVisible(false);

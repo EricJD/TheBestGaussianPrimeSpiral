@@ -29,6 +29,29 @@ public class GaussianPrimeSpiral {
         return primeSpiral(gaussianPrimeList);
     }
 
+    public int[] dir(int i){
+        int[] dir = new int[2];
+        switch (i){
+            //up
+            case 0:
+                dir=new int[]{0,1};
+                break;
+            //left
+            case 1:
+                dir=new int[]{-1,0};
+                break;
+            //down
+            case 2:
+                dir=new int[]{0,-1};
+                break;
+            //right
+            case 3:
+                dir=new int[]{1,0};
+                break;
+        }
+        return dir;
+    }
+
     public List<int[]> primeSpiral(ArrayList<int[]> gaussianPrimeList) {
 
         List<int[]> gaussianPrimeSpiral = new ArrayList<>();
@@ -38,8 +61,10 @@ public class GaussianPrimeSpiral {
         int[] start = new int[]{r.nextInt(2 * max) - max, r.nextInt(2 * max) - max};
         gaussianPrimeSpiral.add(start);
 
-        int x = -1;
-        int y = 0;
+        int[] dir = dir(r.nextInt(4));
+
+        int x = dir[0];
+        int y = dir[1];
 
         int[] pos = new int[2];
         pos[0] = start[0];
