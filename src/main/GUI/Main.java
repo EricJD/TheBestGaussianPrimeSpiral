@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -24,6 +25,7 @@ import java.util.List;
 public class Main extends Application {
 
     public static int scale = 120;
+    public static boolean path = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -91,8 +93,8 @@ public class Main extends Application {
 
         VBox.setVgrow(HB, Priority.ALWAYS);
 
-        final ScatterChart<Number,Number> scatterChart = new ScatterChart<>(xAxis,yAxis);
-        scatterChart.setLegendVisible(false);
+        final LineChart<Number,Number> scatterChart = new LineChart<>(xAxis,yAxis);
+        scatterChart.setLegendVisible(true);
 
         GaussianPrimeDatabase gaussianPrimeDatabase = GaussianPrimeDatabase.getInstance();
         gaussianPrimeDatabase.startup();
@@ -141,7 +143,7 @@ public class Main extends Application {
                     CheckBox chk = (CheckBox) event.getSource();
                     System.out.println("Action performed on checkbox " + chk.getText());
 
-                    showPrimes(checkBox, primes, scatterChart);
+                    showPrimesAndPath(spiral, checkBox, primes, scatterChart);
 
                     if(!checkBox.isSelected()){
                         scatterChart.getData().clear();
@@ -150,11 +152,26 @@ public class Main extends Application {
                 }
         });
 
+        capturePathButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
+                if(path){
+                    path=true;
+                }
+                else if(!path){
+                    path=false;
+                }
+
+            }
+        });
+
+
         Button10.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 scale = 10;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -162,7 +179,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 20;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -170,7 +187,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 30;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -178,7 +195,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 40;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -186,7 +203,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 50;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -194,7 +211,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 60;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -202,7 +219,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 70;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -210,7 +227,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 80;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -218,7 +235,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 90;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -226,7 +243,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 100;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -234,7 +251,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 110;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -242,7 +259,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 scale = 120;
-                showPrimes(checkBox, primes, scatterChart);
+                showPrimesAndPath(spiral, checkBox, primes, scatterChart);
             }
         });
 
@@ -268,20 +285,41 @@ public class Main extends Application {
     }*/
 
 
-    private void showPrimes(CheckBox checkBox, ArrayList<int[]> primes, ScatterChart<Number, Number> scatterChart) {
+    private void showPrimesAndPath(List<int[]> spiral, CheckBox checkBox, ArrayList<int[]> primes, LineChart<Number, Number> scatterChart) {
+        scatterChart.getData().clear();
+
+        XYChart.Series series1 = new XYChart.Series();
+        for (int[] p : primes) {
+            if (p[0] <= scale && p[0] >= -scale && p[1] <= scale && p[1] >= -scale)
+                series1.getData().add(new XYChart.Data(p[0], p[1]));
+        }
+
+        XYChart.Series series2 = new XYChart.Series();
+        for (int[] s : spiral){
+            if (s[0] <= scale && s[0] >= -scale && s[1] <= scale && s[1] >= -scale)
+                series2.getData().add(new XYChart.Data(s[0], s[1]));
+        }
+
         if(!checkBox.isSelected()){
-            scatterChart.getData().clear();
+            scatterChart.getData().removeAll(series1);
+            capturePath(series2, scatterChart);
         }
 
         else if (checkBox.isSelected()) {
-            scatterChart.getData().clear();
-
-            XYChart.Series series1 = new XYChart.Series();
-            for (int[] p : primes) {
-                if (p[0] <= scale && p[0] >= -scale && p[1] <= scale && p[1] >= -scale)
-                    series1.getData().add(new XYChart.Data(p[0], p[1]));
-            }
             scatterChart.getData().addAll(series1);
+            capturePath(series2, scatterChart);
+        }
+
+    }
+
+    private void capturePath(XYChart.Series series2, LineChart<Number, Number> scatterChart) {
+
+        if(!path){
+            scatterChart.getData().addAll(series2);
+        }
+
+        else  if(path){
+            scatterChart.getData().removeAll(series2);
         }
 
     }
