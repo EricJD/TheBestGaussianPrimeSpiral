@@ -57,7 +57,7 @@ public class Main extends Application {
         CheckBox checkBox = new CheckBox("Show gaussian primes");
         buttonBox.setAlignment((Pos.TOP_CENTER));
         buttonBox.getChildren().addAll(label,Button10,Button20,Button30,Button40,Button50,Button60,Button70,Button80,Button90,Button100,Button110,Button120,capturePathButton,checkBox);
-        HBox.setMargin(label,new Insets(6,2,1,1));
+        HBox.setMargin(label,new Insets(6,5,1,1));
         HBox.setMargin(Button10,new Insets(3,0,1,0));
         HBox.setMargin(Button20,new Insets(3,0,1,0));
         HBox.setMargin(Button30,new Insets(3,0,1,0));
@@ -80,9 +80,12 @@ public class Main extends Application {
         xAxis.setLowerBound(-100);
         xAxis.setUpperBound(100);
 
+        HBox cycle = new HBox();
+        cycle.setAlignment(Pos.CENTER);
 
-        Scene scene = new Scene(VB, 700, 700);
-        VB.getChildren().addAll(buttonBox, HB);
+
+        Scene scene = new Scene(VB, 700, 650);
+        VB.getChildren().addAll(buttonBox, cycle,HB);
         HB.getChildren().addAll(VB2);
         VB2.getChildren().addAll(pane);
 
@@ -128,9 +131,8 @@ public class Main extends Application {
             start2 = String.valueOf(spiral.get(0)[1]);
         }else start2 = "+"+String.valueOf(spiral.get(0)[1]);
         textLabel.setText("initial point is "+start1+" "+start2+"i; cycle length is "+spiral.size());
-        VB.getChildren().add(textLabel);
-
-
+        cycle.getChildren().add(textLabel);
+        HBox.setMargin(textLabel,new Insets(5,0,0,0));
 
             checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
