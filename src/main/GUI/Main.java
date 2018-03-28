@@ -132,7 +132,7 @@ public class Main extends Application {
         if (spiral.get(0)[1]<0) {
             start2 = String.valueOf(spiral.get(0)[1]);
         }else start2 = "+"+String.valueOf(spiral.get(0)[1]);
-        textLabel.setText("initial point is "+start1+" "+start2+"i; cycle length is "+spiral.size());
+        textLabel.setText("initial point is "+start1+" "+start2+"i; cycle length is "+(spiral.size()-1));
         cycle.getChildren().add(textLabel);
         HBox.setMargin(textLabel,new Insets(5,0,0,0));
 

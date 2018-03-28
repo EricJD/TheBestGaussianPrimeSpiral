@@ -29,24 +29,24 @@ public class GaussianPrimeSpiral {
         return primeSpiral(gaussianPrimeList);
     }
 
-    public int[] dir(int i){
+    public int[] dir(int i) {
         int[] dir = new int[2];
-        switch (i){
+        switch (i) {
             //up
             case 0:
-                dir=new int[]{0,1};
+                dir = new int[]{0, 1};
                 break;
             //left
             case 1:
-                dir=new int[]{-1,0};
+                dir = new int[]{-1, 0};
                 break;
             //down
             case 2:
-                dir=new int[]{0,-1};
+                dir = new int[]{0, -1};
                 break;
             //right
             case 3:
-                dir=new int[]{1,0};
+                dir = new int[]{1, 0};
                 break;
         }
         return dir;
@@ -76,26 +76,43 @@ public class GaussianPrimeSpiral {
         while (!Arrays.equals(pos, start)) {
             if (pos[0] > 2 * max || pos[0] < -2 * max || pos[1] > 2 * max || pos[1] < -2 * max) {
                 return primeSpiral(gaussianPrimeList);
-            }else
-            if (gaussianPrimeList.stream().anyMatch(a -> Arrays.equals(a, pos))) {
-                gaussianPrimeSpiral.add(pos);
-                if (x == -1) { //left
-                    x = 0;
-                    y = -1;
-                } else if (x == 1) { //right
-                    x = 0;
-                    y = 1;
-                } else if (y == -1) { //down
-                    x = 1;
-                    y = 0;
-                } else if (y == 1) { //up
-                    x = -1;
-                    y = 0;
+            } else if (gaussianPrimeList.stream().anyMatch(a -> Arrays.equals(a, pos))) {
+                int[] point = new int[2];
+                point[0] = pos[0];
+                point[1]=pos[1];
+                gaussianPrimeSpiral.add(point);
+                switch (x) {
+                    case -1:
+                        x = 0;
+                        y = -1;
+                        break;
+                    case 1:
+                        x = 0;
+                        y = 1;
+                        break;
+                    case 0:
+                        switch (y) {
+                            case -1:
+                                x = 1;
+                                y = 0;
+                                break;
+                            case 1:
+                                x = -1;
+                                y = 0;
+                                break;
+                        }
+                        break;
                 }
             }
             pos[0] = pos[0] + x;
+
             pos[1] = pos[1] + y;
         }
+        for (int[] s : gaussianPrimeSpiral) {
+            System.out.println(s[0] + " " + s[1]);
+        }
+        gaussianPrimeSpiral.add(start);
+
         return gaussianPrimeSpiral;
     }
 }
