@@ -108,9 +108,6 @@ public class GaussianPrimeSpiral {
 
             pos[1] = pos[1] + y;
         }
-        for (int[] s : gaussianPrimeSpiral) {
-            System.out.println(s[0] + " " + s[1]);
-        }
         gaussianPrimeSpiral.add(start);
 
         return gaussianPrimeSpiral;
