@@ -13,11 +13,11 @@ public class GaussianPrimeDatabase {
     private GaussianPrimeDatabase(){}
 
     private Connection connection;
-    private String driverName = "jdbc:hsqldb:";
-    private String username = "sa";
-    private String password = "";
 
     public void startup() {
+        String driverName = "jdbc:hsqldb:";
+        String username = "sa";
+        String password = "";
         try {
             Class.forName("org.hsqldb.jdbcDriver");
             String databaseURL = driverName + Configuration.instance.databaseFile;
@@ -67,7 +67,7 @@ public class GaussianPrimeDatabase {
         update(sqlStringBuilder.toString());
     }
 
-    public String buildSQLStatement(String id) {
+    private String buildSQLStatement(String id) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("INSERT INTO gaussianprimes (id) VALUES ('");
         stringBuilder.append(id).append("')");
