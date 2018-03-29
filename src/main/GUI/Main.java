@@ -139,10 +139,6 @@ public class Main extends Application {
                     System.out.println("Action performed on checkbox " + chk.getText());
 
                     showPrimesAndPath(spiral, checkBox, primes, scatterChart);
-
-                    if (!checkBox.isSelected()) {
-                        scatterChart.getData().clear();
-                    }
                 }
             }
         });
