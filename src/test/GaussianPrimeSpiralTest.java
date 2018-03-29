@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class GaussianPrimeSpiralTest {
+class GaussianPrimeSpiralTest {
 
     @Test
-    public void spiralTest(){
+    void spiralTest(){
         GaussianPrimeDatabase gaussianPrimeDatabase = GaussianPrimeDatabase.getInstance();
         gaussianPrimeDatabase.startup();
         gaussianPrimeDatabase.dropTable();

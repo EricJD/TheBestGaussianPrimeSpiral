@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Random;
 
 public class GaussianPrimeSpiral {
-    Configuration configuration = Configuration.instance;
-    int max = configuration.max;
+    private Configuration configuration = Configuration.instance;
+    private int max = configuration.max;
 
     public List<int[]> getPrimes() {
         GaussianPrimeDatabase gaussianPrimeDatabase = GaussianPrimeDatabase.getInstance();
@@ -17,9 +17,8 @@ public class GaussianPrimeSpiral {
 
         ArrayList<int[]> gaussianPrimeList = new ArrayList<>();
 
-        for (int i = 0; i < gaussianPrimesString.size(); i++) {
-            String a = gaussianPrimesString.get(i);
-            String[] b = a.split(",");
+        for (String i: gaussianPrimesString) {
+            String[] b = i.split(",");
             int[] element = new int[b.length];
             for (int x = 0; x < b.length; x++) {
                 element[x] = Integer.valueOf(b[x]);
@@ -29,7 +28,7 @@ public class GaussianPrimeSpiral {
         return primeSpiral(gaussianPrimeList);
     }
 
-    public int[] dir(int i) {
+    private int[] dir(int i) {
         int[] dir = new int[2];
         switch (i) {
             //up
@@ -52,7 +51,7 @@ public class GaussianPrimeSpiral {
         return dir;
     }
 
-    public List<int[]> primeSpiral(ArrayList<int[]> gaussianPrimeList) {
+    private List<int[]> primeSpiral(ArrayList<int[]> gaussianPrimeList) {
 
         List<int[]> gaussianPrimeSpiral = new ArrayList<>();
 
@@ -67,8 +66,8 @@ public class GaussianPrimeSpiral {
         int y = dir[1];
 
         int[] pos = new int[2];
-        pos[0] = start[0];
-        pos[1] = start[1];
+
+        System.arraycopy(start,0,pos,0,2);
 
         pos[0] = pos[0] + x;
         pos[1] = pos[1] + y;
@@ -78,8 +77,7 @@ public class GaussianPrimeSpiral {
                 return primeSpiral(gaussianPrimeList);
             } else if (gaussianPrimeList.stream().anyMatch(a -> Arrays.equals(a, pos))) {
                 int[] point = new int[2];
-                point[0] = pos[0];
-                point[1]=pos[1];
+                System.arraycopy(pos,0,point,0,2);
                 gaussianPrimeSpiral.add(point);
                 switch (x) {
                     case -1:
@@ -105,7 +103,6 @@ public class GaussianPrimeSpiral {
                 }
             }
             pos[0] = pos[0] + x;
-
             pos[1] = pos[1] + y;
         }
         gaussianPrimeSpiral.add(start);
