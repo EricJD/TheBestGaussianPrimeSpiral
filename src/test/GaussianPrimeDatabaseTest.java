@@ -8,11 +8,11 @@ import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class GaussianPrimeDatabaseTest {
-    GaussianPrimeDatabase database = GaussianPrimeDatabase.getInstance();
+class GaussianPrimeDatabaseTest {
+    private GaussianPrimeDatabase database = GaussianPrimeDatabase.getInstance();
 
     @Test
-    public void isConnectionOpen() {
+    void isConnectionOpen() {
         try {
             database.startup();
             assertFalse(database.getConnection().isClosed());
@@ -22,7 +22,7 @@ public class GaussianPrimeDatabaseTest {
     }
 
     @Test
-    public void isConnectionClosed() {
+    void isConnectionClosed() {
         try {
             database.startup();
             database.shutdown();
@@ -33,7 +33,7 @@ public class GaussianPrimeDatabaseTest {
     }
 
     @Test
-    public void isGaussianPrimeDatabaseEmpty(){
+    void isGaussianPrimeDatabaseEmpty(){
         database.startup();
         database.dropTable();
         database.createTable();
