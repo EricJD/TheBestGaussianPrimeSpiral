@@ -58,7 +58,7 @@ public class GaussianPrimeSpiral {
 
         Random r = new Random();
 
-        int[] start = new int[]{r.nextInt(2 * max) - max, r.nextInt(2 * max) - max};
+        int[] start = new int[]{r.nextInt(100) - 50, r.nextInt(100) - 50};
         gaussianPrimeSpiral.add(start);
 
         int[] dir = dir(r.nextInt(4));
