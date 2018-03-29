@@ -1,6 +1,5 @@
 package GUI;
 
-
 import GaussianPrimeSpirals.GaussianPrimeSpiral;
 import GaussianPrimeSpirals.GaussianPrimes;
 import database.GaussianPrimeDatabase;
@@ -103,9 +102,8 @@ public class Main extends Application {
         ArrayList<String> gaussianPrimesString = gaussianPrimeDatabase.getGaussianPrimes();
         ArrayList<int[]> primes = new ArrayList<>();
 
-        for (int i = 0; i < gaussianPrimesString.size(); i++) {
-            String a = gaussianPrimesString.get(i);
-            String[] b = a.split(",");
+        for (String i : gaussianPrimesString) {
+            String[] b = i.split(",");
             int[] element = new int[b.length];
             for (int x = 0; x < b.length; x++) {
                 element[x] = Integer.valueOf(b[x]);
