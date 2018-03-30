@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 
 public class Main extends Application {
 
-    public static int scale = 120;
+    public static int scale = 55;
     public static boolean path = false;
 
     @Override
