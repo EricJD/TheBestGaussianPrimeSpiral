@@ -266,7 +266,7 @@ public class Main extends Application {
         scene.getStylesheets().add("GUI/Chart.css");
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("GPS: Primzahlen, Fraktale und Käse");
+        primaryStage.setTitle("Gaussian Prime Spiral");
         primaryStage.show();
 
         showPrimesAndPath(spiral, checkBox, primes, scatterChart);
@@ -292,7 +292,7 @@ public class Main extends Application {
                 pathSeries[i].getData().add(new XYChart.Data(spiral.get(i + 1)[0], spiral.get(i + 1)[1]));
             }
 
-
+            //if graph goes over scala
             if (i < spiral.size() - 1 && spiral.get(i+1)[0] > scale && spiral.get(i+1)[1] <= scale && spiral.get(i+1)[1] >= -scale
                     && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale) {
                 pathSeries[i].getData().add(new XYChart.Data(scale, spiral.get(i+1)[1]));
