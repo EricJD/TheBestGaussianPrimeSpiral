@@ -291,6 +291,42 @@ public class Main extends Application {
                     spiral.get(i + 1)[0] <= scale && spiral.get(i + 1)[0] >= -scale && spiral.get(i + 1)[1] <= scale && spiral.get(i + 1)[1] >= -scale) {
                 pathSeries[i].getData().add(new XYChart.Data(spiral.get(i + 1)[0], spiral.get(i + 1)[1]));
             }
+
+
+            if (i < spiral.size() - 1 && spiral.get(i+1)[0] > scale && spiral.get(i+1)[1] <= scale && spiral.get(i+1)[1] >= -scale
+                    && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale) {
+                pathSeries[i].getData().add(new XYChart.Data(scale, spiral.get(i+1)[1]));
+            }
+            if (i < spiral.size() - 1 && spiral.get(i+1)[0] < -scale && spiral.get(i+1)[1] <= scale && spiral.get(i+1)[1] >= -scale
+                    && spiral.get(i)[0] >= -scale && spiral.get(i)[0] <= scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale) {
+                pathSeries[i].getData().add(new XYChart.Data(-scale, spiral.get(i+1)[1]));
+            }
+            if (i < spiral.size() - 1 && spiral.get(i+1)[1] > scale && spiral.get(i+1)[0] <= scale && spiral.get(i+1)[0] >= -scale
+                    && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale) {
+                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i+1)[0], scale));
+            }
+            if (i < spiral.size() - 1 && spiral.get(i+1)[1] < -scale && spiral.get(i+1)[0] <= scale && spiral.get(i+1)[0] >= -scale
+                    && spiral.get(i)[1] >= -scale && spiral.get(i)[1] <= scale && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale) {
+                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i+1)[0], -scale));
+            }
+
+
+            if (i < spiral.size() - 1 && spiral.get(i)[0] > scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale
+                    && spiral.get(i + 1)[0] <= scale && spiral.get(i + 1)[0] >= -scale && spiral.get(i + 1)[1] <= scale && spiral.get(i + 1)[1] >= -scale) {
+                pathSeries[i].getData().add(new XYChart.Data(scale, spiral.get(i)[1]));
+            }
+            if (i < spiral.size() - 1 && spiral.get(i)[0] < -scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale
+                    && spiral.get(i + 1)[0] >= -scale && spiral.get(i+1)[0] <= scale && spiral.get(i + 1)[1] <= scale && spiral.get(i + 1)[1] >= -scale) {
+                pathSeries[i].getData().add(new XYChart.Data(-scale, spiral.get(i)[1]));
+            }
+            if (i < spiral.size() - 1 && spiral.get(i)[1] > scale && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale
+                    && spiral.get(i + 1)[1] <= scale && spiral.get(i+1)[1] >= -scale && spiral.get(i + 1)[0] <= scale && spiral.get(i + 1)[0] >= -scale) {
+                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i)[0], scale));
+            }
+            if (i < spiral.size() - 1 && spiral.get(i)[1] < -scale && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale
+                    && spiral.get(i + 1)[1] >= -scale && spiral.get(i+1)[1] <= scale && spiral.get(i + 1)[0] <= scale && spiral.get(i + 1)[0] >= -scale) {
+                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i)[0], -scale));
+            }
         }
 
 
@@ -306,14 +342,11 @@ public class Main extends Application {
     }
 
     private void capturePath(XYChart.Series[] pathSeries, LineChart<Number, Number> scatterChart) {
-
         if (path) {
             scatterChart.getData().addAll(pathSeries);
-
         } else if (!path) {
             scatterChart.getData().removeAll(pathSeries);
         }
-
     }
 
     public static void main(String[] args) {
