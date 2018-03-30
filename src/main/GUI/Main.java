@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 
 public class Main extends Application {
 
-    public static int scale = 10;
+    public static int scale = 20;
     public static boolean path = false;
 
     @Override
@@ -135,9 +135,6 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 if (event.getSource() instanceof CheckBox) {
-                    CheckBox chk = (CheckBox) event.getSource();
-                    System.out.println("Action performed on checkbox " + chk.getText());
-
                     showPrimesAndPath(spiral, checkBox, primes, scatterChart);
                 }
             }
@@ -285,50 +282,49 @@ public class Main extends Application {
         XYChart.Series[] pathSeries = Stream.<XYChart.Series<String, Number>>generate(XYChart.Series::new).limit(spiral.size() - 1).toArray(XYChart.Series[]::new);
         for (int i = 0; i < spiral.size() - 1; i++) {
             if (spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i)[0], spiral.get(i)[1]));
+                pathSeries[i].getData().add(new XYChart.Data<>(spiral.get(i)[0], spiral.get(i)[1]));
             }
             if (i < spiral.size() - 1 &&
                     spiral.get(i + 1)[0] <= scale && spiral.get(i + 1)[0] >= -scale && spiral.get(i + 1)[1] <= scale && spiral.get(i + 1)[1] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i + 1)[0], spiral.get(i + 1)[1]));
+                pathSeries[i].getData().add(new XYChart.Data<>(spiral.get(i + 1)[0], spiral.get(i + 1)[1]));
             }
 
-            //if graph goes over scala
+            //falls der Pfad aus der Skala herausläuft
             if (i < spiral.size() - 1 && spiral.get(i+1)[0] > scale && spiral.get(i+1)[1] <= scale && spiral.get(i+1)[1] >= -scale
                     && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(scale, spiral.get(i+1)[1]));
+                pathSeries[i].getData().add(new XYChart.Data<>(scale, spiral.get(i+1)[1]));
             }
             if (i < spiral.size() - 1 && spiral.get(i+1)[0] < -scale && spiral.get(i+1)[1] <= scale && spiral.get(i+1)[1] >= -scale
                     && spiral.get(i)[0] >= -scale && spiral.get(i)[0] <= scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(-scale, spiral.get(i+1)[1]));
+                pathSeries[i].getData().add(new XYChart.Data<>(-scale, spiral.get(i+1)[1]));
             }
             if (i < spiral.size() - 1 && spiral.get(i+1)[1] > scale && spiral.get(i+1)[0] <= scale && spiral.get(i+1)[0] >= -scale
                     && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i+1)[0], scale));
+                pathSeries[i].getData().add(new XYChart.Data<>(spiral.get(i+1)[0], scale));
             }
             if (i < spiral.size() - 1 && spiral.get(i+1)[1] < -scale && spiral.get(i+1)[0] <= scale && spiral.get(i+1)[0] >= -scale
                     && spiral.get(i)[1] >= -scale && spiral.get(i)[1] <= scale && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i+1)[0], -scale));
+                pathSeries[i].getData().add(new XYChart.Data<>(spiral.get(i+1)[0], -scale));
             }
 
 
             if (i < spiral.size() - 1 && spiral.get(i)[0] > scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale
                     && spiral.get(i + 1)[0] <= scale && spiral.get(i + 1)[0] >= -scale && spiral.get(i + 1)[1] <= scale && spiral.get(i + 1)[1] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(scale, spiral.get(i)[1]));
+                pathSeries[i].getData().add(new XYChart.Data<>(scale, spiral.get(i)[1]));
             }
             if (i < spiral.size() - 1 && spiral.get(i)[0] < -scale && spiral.get(i)[1] <= scale && spiral.get(i)[1] >= -scale
                     && spiral.get(i + 1)[0] >= -scale && spiral.get(i+1)[0] <= scale && spiral.get(i + 1)[1] <= scale && spiral.get(i + 1)[1] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(-scale, spiral.get(i)[1]));
+                pathSeries[i].getData().add(new XYChart.Data<>(-scale, spiral.get(i)[1]));
             }
             if (i < spiral.size() - 1 && spiral.get(i)[1] > scale && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale
                     && spiral.get(i + 1)[1] <= scale && spiral.get(i+1)[1] >= -scale && spiral.get(i + 1)[0] <= scale && spiral.get(i + 1)[0] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i)[0], scale));
+                pathSeries[i].getData().add(new XYChart.Data<>(spiral.get(i)[0], scale));
             }
             if (i < spiral.size() - 1 && spiral.get(i)[1] < -scale && spiral.get(i)[0] <= scale && spiral.get(i)[0] >= -scale
                     && spiral.get(i + 1)[1] >= -scale && spiral.get(i+1)[1] <= scale && spiral.get(i + 1)[0] <= scale && spiral.get(i + 1)[0] >= -scale) {
-                pathSeries[i].getData().add(new XYChart.Data(spiral.get(i)[0], -scale));
+                pathSeries[i].getData().add(new XYChart.Data<>(spiral.get(i)[0], -scale));
             }
         }
-
 
         if (!checkBox.isSelected()) {
             scatterChart.getData().removeAll(series1);
@@ -338,7 +334,6 @@ public class Main extends Application {
         }
 
         capturePath(pathSeries, scatterChart);
-
     }
 
     private void capturePath(XYChart.Series[] pathSeries, LineChart<Number, Number> scatterChart) {
