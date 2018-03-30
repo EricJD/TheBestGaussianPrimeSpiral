@@ -16,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.chart.NumberAxis;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -24,7 +23,7 @@ import java.util.stream.Stream;
 
 public class Main extends Application {
 
-    public static int scale = 20;
+    public static int scale = 120;
     public static boolean path = false;
 
     @Override
@@ -56,7 +55,7 @@ public class Main extends Application {
         Button Button120 = new Button("120");
         Button capturePathButton = new Button("capture path");
         CheckBox checkBox = new CheckBox("Show gaussian primes");
-        checkBox.setSelected(true);
+        checkBox.setSelected(false);
         buttonBox.setAlignment((Pos.TOP_CENTER));
         buttonBox.getChildren().addAll(label, Button10, Button20, Button30, Button40, Button50, Button60, Button70, Button80, Button90, Button100, Button110, Button120, capturePathButton, checkBox);
         HBox.setMargin(label, new Insets(6, 5, 1, 1));
